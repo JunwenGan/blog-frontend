@@ -38,6 +38,7 @@
 </template>
 
 <script>
+  import { API_URL } from '../../../config';
   import axios from 'axios';
   import Navbar from '../../components/Layout/Navbar.vue';
   export default {
@@ -55,8 +56,8 @@
     async created() {
       this.articleId = this.$route.params.id; // Get article ID from route
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/articles/${this.articleId}`);
-        const comments = await axios.get(`http://127.0.0.1:5000/getComments/${this.articleId}`)
+        const response = await axios.get(`${API_URL}/articles/${this.articleId}`);
+        const comments = await axios.get(`${API_URL}/getComments/${this.articleId}`)
         this.comments = comments.data
 
         this.article = response.data; // Store article data
@@ -86,7 +87,7 @@
         const articleId = this.$route.params.id; // Get the current article ID
         try {
           // Post the new comment to the API
-          const response = await axios.post(`http://127.0.0.1:5000/addComments`, {
+          const response = await axios.post(`${API_URL}/addComments`, {
             content: this.newComment, // Send the comment content
             article_id: articleId
           }, {
@@ -94,7 +95,7 @@
               Authorization: `Bearer ${token}`, // Include JWT token
             },
           });
-          const comments = await axios.get(`http://127.0.0.1:5000/getComments/${this.articleId}`)
+          const comments = await axios.get(`${API_URL}/getComments/${this.articleId}`)
           this.comments = comments.data
           // Clear the input field
           this.newComment = "";

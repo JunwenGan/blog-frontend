@@ -9,6 +9,7 @@
   
   
   <script>
+  import { API_URL } from '../../config';
   import axios from 'axios';
   import ArticleIndex from './Blog/ArticleIndex.vue';
   import Navbar from '../components/Layout/Navbar.vue';
@@ -24,8 +25,7 @@
     },
     async created() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/articles/'); // Fetch articles from API
-        this.articles = response.data.results; // Store articles
+
       } catch (error) {
         console.error('Error fetching articles:', error);
       }

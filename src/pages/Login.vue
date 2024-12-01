@@ -43,7 +43,7 @@
 
 <script>
 import axios from "axios";
-
+import { API_URL } from "../../config"
 export default {
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await axios.post("http://127.0.0.1:5000/login", {
+        const response = await axios.post(`${API_URL}/login`, {
           username: this.username,
           password: this.password,
         });

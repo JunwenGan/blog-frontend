@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { API_URL } from '../../../config';
 import ArticleCard from "../../components/ArticleCard.vue";
 import axios from "axios";
 import Pagination from "../../components/Pagination.vue";
@@ -29,7 +30,7 @@ export default {
     },
     data() {
         return {
-            endpoint: "http://127.0.0.1:5000/articles", // Base API endpoint with Flask server
+            endpoint: `${API_URL}/articles`, // Base API endpoint with Flask server
             articles: [],
             pagination: {
                 next: null,
