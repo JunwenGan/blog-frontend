@@ -5,7 +5,11 @@
             <router-link class="navbar-brand" to="/">DENDI Blog</router-link>
 
             <div>
-                <span v-if="!session_token" @click="login" class="btn btn-outline-primary btn-sm mx-1">Login</span>
+                <div v-if="!access_token">
+                    <span  @click="login" class="btn btn-outline-primary btn-sm mx-1">Login</span>
+                    <span>/</span>
+                    <span  @click="register" class="btn btn-outline-primary btn-sm mx-1">Register</span>
+                </div>
                 <span v-else @click="logout" class="btn btn-outline-danger btn-sm mx-1">Logout</span>
             </div>
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,13 +51,13 @@
         name: "Navbar",
         data() {
             return {
-                session_token: localStorage.getItem('session_token')
+                access_token: localStorage.getItem('access_token')
             };
         },
         methods: {
             logout() {
                 // Clear token from localStorage
-                localStorage.removeItem("session_token");
+                localStorage.removeItem("access_token");
 
                 // Update the component's session_token state
                 this.session_token = null;
@@ -63,6 +67,9 @@
             },
             login() {
                 this.$router.push("/login");
+            },
+            register() {
+                this.$router.push("/register");
             }
         },
         components: {},

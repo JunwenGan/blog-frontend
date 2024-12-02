@@ -5,6 +5,7 @@ const routes = [
   { path: '/', component: () => import('../pages/Home.vue') }, // Home page
   { path: '/article/:id', component: () => import('../pages/Blog/ArticleDetail.vue') }, // Article detail page
   { path: '/login', component: () => import('../pages/Login.vue') }, // Login page
+  { path: '/register', component: () => import('../pages/Register.vue') }, // Register page
 ];
 
 // Create router instance
